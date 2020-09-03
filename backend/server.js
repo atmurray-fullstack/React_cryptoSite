@@ -1,13 +1,13 @@
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8080;
+const authRoute = require('./routes/auth')
 
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 
-
 const MONGODB_URI = `mongodb+srv://newUser0013:${passwordAtlas}@reactcryptoapp.zipdp.mongodb.net/<dbname>?retryWrites=true&w=majority`
-
+app.use('/api/user', authRoute)
 app.use(morgan('tiny'));
 mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
