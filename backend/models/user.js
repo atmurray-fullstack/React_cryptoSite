@@ -5,14 +5,24 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     userName: {
         type: String,
-        trim: true,
-        required: "Enter a user name"
+        required: true,
+        min: 7,
+        max: 255
     },
-    passWord: {
+    email: {
         type: String,
-        required: "Enter a password"
+        trim: true,
+        required: true,
+        max: 255,
+        min: 7
     },
-    date: {
+    password: {
+        type: String,
+        required: true,
+        max: 1024,
+        min: 7
+    },
+    dateCreated: {
         type: Date,
         default: Date.now
     },
@@ -22,7 +32,7 @@ const userSchema = new Schema({
     },
     savedCryptos: {
         type: Array,
-        default: []
+        default: ['bitcoin']
     }
 });
 

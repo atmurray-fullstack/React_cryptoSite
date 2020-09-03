@@ -2,14 +2,16 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8080;
 const authRoute = require('./routes/auth')
-
+const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+dotenv.config();
 
-const MONGODB_URI = `mongodb+srv://newUser0013:${passwordAtlas}@reactcryptoapp.zipdp.mongodb.net/<dbname>?retryWrites=true&w=majority`
+app.use(express.json());
 app.use('/api/user', authRoute)
 app.use(morgan('tiny'));
-mongoose.connect(MONGODB_URI, {
+
+mongoose.connect(process.env.DB_CONNECT, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
