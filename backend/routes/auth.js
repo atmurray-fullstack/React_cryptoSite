@@ -1,7 +1,10 @@
 const router = require('express').Router();
 const User = require('../models/User');
-const { registerValidation, loginValidation } = require('./validation')
+const { registerValidation, loginValidation } = require('./validation');
 const bcrypt = require('bcryptjs');
+const { rawListeners } = require('../models/User');
+const { expression } = require('@hapi/joi');
+const jwt = require('jsonwebtoken');
 
 
 
@@ -36,7 +39,26 @@ router.post('/register', async (req, res) => {
 
 });
 
-router.post('/login', (res, req) => {
+router.post('/login', async (req, res) => {
+
+    const { error } = loginValidation(req.body);
+    if (error) {
+        console.log(error.details[0].message);
+        return res.status(400).send(error.details[0].message);
+    }
+
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+        return res.status(400).send('Email or password is incorrect.')
+    }
+
+    const validPassword = await bcrypt.compare(req.body.password, user.password);
+    if (!validPassword) {
+        return res.status(400).send('Invalid email or password')
+    }
+
+    const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET);
+    res.header('auth-token', token).send(token);
 
 });
 
