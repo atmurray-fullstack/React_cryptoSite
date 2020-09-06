@@ -2,8 +2,6 @@ const router = require('express').Router();
 const User = require('../models/User');
 const { registerValidation, loginValidation } = require('./validation');
 const bcrypt = require('bcryptjs');
-const { rawListeners } = require('../models/User');
-const { expression } = require('@hapi/joi');
 const jwt = require('jsonwebtoken');
 
 
