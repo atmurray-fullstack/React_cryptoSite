@@ -1,15 +1,16 @@
 import React from 'react';
 import AppText from '../components/AppText'
-
+import BasicScreen from '../components/BasicScreen'
 
 const Landing = () => {
     return (
-        <>
-            <h1>landing pag3e</h1>
-            <AppText>
+        <BasicScreen>
+            <AppText size='3rem'>
                 i am the landing the page
             </AppText>
-        </>
+
+        </BasicScreen>
+
 
     );
 }

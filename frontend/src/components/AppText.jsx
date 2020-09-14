@@ -2,11 +2,19 @@ import React from 'react';
 import { } from 'materialize-css'
 
 
-const AppText = ({ Children }) => {
-
+const AppText = ({ children, props, size }) => {
+    const styles = {
+        text: {
+            color: 'black',
+            fontSize: size
+        }
+    }
 
     return (
-        <p style={{ color: "red" }}> {Children}  </p>
+        <p style={styles.text}>
+            {children}
+
+        </p >
 
     );
 }
