@@ -4,12 +4,16 @@ import BasicScreen from '../components/BasicScreen'
 
 const Landing = () => {
     return (
+
+
         <BasicScreen>
-            <AppText size='3rem'>
+
+            <AppText size='1.25rem'>
                 i am the landing the page
             </AppText>
 
         </BasicScreen>
+
 
 
     );
