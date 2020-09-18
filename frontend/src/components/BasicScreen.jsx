@@ -4,7 +4,7 @@ const BasicScreen = ({ children }) => {
 
     const styles = {
         screen: {
-            backgroundColor: 'red',
+            backgroundColor: 'white',
             width: '100vw',
             height: '100vw'
         }
