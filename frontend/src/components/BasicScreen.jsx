@@ -5,14 +5,14 @@ const BasicScreen = ({ children }) => {
     const styles = {
         screen: {
             backgroundColor: 'white',
-            width: '100vw',
+            width: '100%',
             height: '100vw'
         }
     }
 
 
     return (
-        <div style={styles.screen}>
+        <div style={styles.screen} className='col-12 mx-auto '>
             {children}
         </div>
 

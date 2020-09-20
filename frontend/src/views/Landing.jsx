@@ -10,9 +10,13 @@ const Landing = () => {
         <BasicScreen>
 
             <NavigationBar />
-            <Parallax />
+            <Parallax>
+
+            </Parallax>
 
         </BasicScreen>
+
+
 
 
 
