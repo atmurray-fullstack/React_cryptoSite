@@ -1,14 +1,16 @@
 
 
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import BasicScreen from '../components/BasicScreen'
 import NavigationBar from '../components/NavigationBar'
 import Parallax from '../components/Parallax/Parallax'
 import Axios from 'axios'
 
 
-const LoginScreen = (props) => {
 
+const LoginScreen = (props) => {
+    const history = useHistory();
     const [user, setUser] = useState({
         userName: null,
         passWord: null
@@ -37,7 +39,8 @@ const LoginScreen = (props) => {
         })
             .then(res => {
                 console.log(res.data)
-                localStorage.setItem('jwt', res.data)
+                window.localStorage.setItem('jwt', res.data)
+                history.push('/user')
             }, error => {
                 console.log('Incorrect username or password')
             })
