@@ -34,9 +34,13 @@ const LoginScreen = (props) => {
                 email: user.userName,
                 password: user.passWord
             }
-        }).then((res) => {
-            console.log(res)
         })
+            .then(res => {
+                console.log(res.data)
+                localStorage.setItem('jwt', res.data)
+            }, error => {
+                console.log('Incorrect username or password')
+            })
     }
 
     return (
