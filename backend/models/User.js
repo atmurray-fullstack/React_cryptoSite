@@ -33,6 +33,20 @@ const userSchema = new Schema({
     savedCryptos: {
         type: Array,
         default: ['bitcoin']
+    },
+    history:{
+        type:Object,
+        default:{
+'btc':{
+    'name':'bitcoin',
+    'symbol':'btc',
+    'qty':0,
+    'buy date':'12/12/2020',
+    'price now':0,
+    'profit':0
+}
+
+        }
     }
 });
 
