@@ -2,6 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import BasicScreen from "../components/BasicScreen";
 import NavigationBar from "../components/NavigationBar";
+import CryptoTable from '../components/AppCryptoTable';
+import AppCryptoTable from "../components/AppCryptoTable";
+import Parallax from "../components/Parallax/Parallax";
 
 const UserPage = () => {
     const token = window.localStorage.getItem('jwt');
@@ -9,10 +12,10 @@ const UserPage = () => {
     const [user, setUser] = useState({
         'favorites': '',
         'crypto': '',
-        'userName': ''
+        'userName': '',
+        'history': ''
 
     });
-    const [userHistory, setUserHistory] = useState({})
 
 
     useEffect(() => {
@@ -30,24 +33,31 @@ const UserPage = () => {
                         'crypto': res.data.savedCryptos,
                         'userName': res.data.userName,
                         'history': res.data.history
-
                     }
                 )
-                // setUserHistory(res.data.)
             })
 
+    }, [token]);
+
+    const showHistory = Object.keys(user.history).map((key, ind) => {
+        return <li
+            key={user.history[key].symbol}
+            style={{ background: 'pink' }}
+        > {user.history[key].name} {user.history[key]['buy date']}</li >
+    })
 
 
-    }, [userHistory])
 
     return (
         <BasicScreen>
             <NavigationBar />
+            <Parallax>
 
-            <h1>{user.userName}</h1>
-            <h1>{user.favorites}</h1>
-            <h1>{user.crypto}</h1>
-            {/* <h1>{user.history}</h1> */}
+                <h1>{user.userName}</h1>
+            </Parallax>
+
+            <CryptoTable />
+
 
 
 
