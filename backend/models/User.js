@@ -28,7 +28,7 @@ const userSchema = new Schema({
     },
     favorites: {
         type: Array,
-        default: ['bitcoin']
+        default: ['bitcoin','litecoin']
     },
     savedCryptos: {
         type: Array,
@@ -41,8 +41,18 @@ const userSchema = new Schema({
     'name':'bitcoin',
     'symbol':'btc',
     'qty':0,
+    'buy price':0,
     'buy date':'12/12/2020',
     'price now':0,
+    'profit':0
+},
+'ltc':{
+    'name':'litecoin',
+    'symbol':'ltc',
+    'qty':15,
+    'buy price':35.236,
+    'buy date':'1/06/2019',
+    'price now':120.412,
     'profit':0
 }
 

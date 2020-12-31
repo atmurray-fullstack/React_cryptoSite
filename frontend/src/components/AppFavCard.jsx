@@ -2,12 +2,12 @@ import React from 'react';
 
 
 const AppFavCard = (props) => {
-    const { image, name, symbol, price, about } = props
+    const { image, name, symbol, price, about } = props;
     return (
         <div className="card" style={{ 'width': '18%', 'height': '70%' }}>
-            <img className="card-img-top" src='...' alt="Card cap" />
+            <img className="card-img-top" src={image} alt="Card cap" />
             <div className="card-body">
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p className="card-text">{about}</p>
             </div>
         </div>
     );
