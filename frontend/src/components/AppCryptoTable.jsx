@@ -10,8 +10,8 @@ const AppCryptoTable = (props) => {
         return (
             <tr key={history[key].symbol} >
                 <th scope="row">{history[key].name}</th>
-                <td>'{history[key].symbol}</td>
-                <td>'{history[key].qty}</td>
+                <td>{history[key].symbol}</td>
+                <td>{history[key].qty}</td>
                 <td>{history[key]['buy price']}</td>
                 <td>{history[key]['buy date']}</td>
                 <td>{history[key]['price now']}</td>

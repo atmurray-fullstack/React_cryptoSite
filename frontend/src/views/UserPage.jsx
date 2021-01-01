@@ -4,7 +4,7 @@ import BasicScreen from "../components/BasicScreen";
 import NavigationBar from "../components/NavigationBar";
 import CryptoTable from '../components/AppCryptoTable';
 import Parallax from "../components/Parallax/Parallax";
-import FavCard from '../components/AppFavCard'
+import AppFavCard from '../components/AppFavCard'
 
 const UserPage = () => {
     const [isBusy, setBusy] = useState(true)
@@ -57,14 +57,12 @@ const UserPage = () => {
                                         })
                                 }
                             })
+
                         })
                         console.log(cryptoFavs)
+                        console.log(cryptoFavs[1].iconUrl)
+
                     })
-
-
-
-
-
 
             })
 
@@ -73,24 +71,31 @@ const UserPage = () => {
 
 
 
-
+    const img = cryptoFavs[0].iconUrl ////This is the problem
 
     return (
+        <div>
+            { isBusy ? (<p>...Loading</p >)
+                : (<BasicScreen>
+                    <NavigationBar />
+                    <Parallax>
+                        <h1>{user.userName}</h1>
 
-        <BasicScreen>
-            <NavigationBar />
-            <Parallax>
-                <h1>{user.userName}</h1>
+                        <AppFavCard image={img} />
+                    </Parallax>
 
-                {/* <FavCard image={cryptoFavs[1].iconUrl} /> */}
-            </Parallax>
-
-            <CryptoTable history={user.history} />
-
+                    <CryptoTable history={user.history} />
+                </BasicScreen>
+                )
+            }
+        </div>
 
 
 
-        </BasicScreen>
+
+
+
+
 
     );
 }
