@@ -18,7 +18,6 @@ const UserPage = () => {
     });
     const [cFavs, setFavs] = useState([])
     const cryptoFavs = [];
-    const cryptoArray = [];
 
 
     useEffect(() => {
@@ -42,9 +41,7 @@ const UserPage = () => {
                 axios.get('https://api.coinranking.com/v1/public/coins')
                     .then((res) => {
                         console.log(res.data.data.coins)
-                        res.data.data.coins.map(el => {
-                            cryptoArray.push(el.symbol + ' ' + el.price)
-                        })
+
                         userInfo.data.favorites.map((el) => {
                             return res.data.data.coins.map(coin => {
 
@@ -54,14 +51,14 @@ const UserPage = () => {
                                             name: el,
                                             value: coin.price,
                                             iconUrl: coin.iconUrl,
-                                            description: coin.description
+                                            description: coin.description,
+                                            linkTo: coin.links[0].url
                                         })
                                 }
                             })
 
                         })
                         console.log(cryptoFavs)
-                        console.log(cryptoFavs[1].iconUrl)
                         setFavs(cryptoFavs);
                         setBusy(false)
                     })
@@ -78,9 +75,7 @@ const UserPage = () => {
                 : (<BasicScreen>
                     <NavigationBar />
                     <Parallax>
-                        <h1>{user.userName}</h1>
-
-                        <AppFavCard image={cFavs[1].iconUrl} />
+                        <AppFavCard cryptoFavs={cFavs} />
                     </Parallax>
 
                     <CryptoTable history={user.history} />
