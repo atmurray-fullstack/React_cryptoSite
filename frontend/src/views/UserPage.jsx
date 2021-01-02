@@ -16,6 +16,7 @@ const UserPage = () => {
         'history': {}
 
     });
+    const [cFavs, setFavs] = useState([])
     const cryptoFavs = [];
     const cryptoArray = [];
 
@@ -39,7 +40,7 @@ const UserPage = () => {
                 )
 
                 axios.get('https://api.coinranking.com/v1/public/coins')
-                    .then(res => {
+                    .then((res) => {
                         console.log(res.data.data.coins)
                         res.data.data.coins.map(el => {
                             cryptoArray.push(el.symbol + ' ' + el.price)
@@ -61,17 +62,15 @@ const UserPage = () => {
                         })
                         console.log(cryptoFavs)
                         console.log(cryptoFavs[1].iconUrl)
-
+                        setFavs(cryptoFavs);
+                        setBusy(false)
                     })
 
             })
-
-
     }, [token]);
 
 
 
-    const img = cryptoFavs[0].iconUrl ////This is the problem
 
     return (
         <div>
@@ -81,7 +80,7 @@ const UserPage = () => {
                     <Parallax>
                         <h1>{user.userName}</h1>
 
-                        <AppFavCard image={img} />
+                        <AppFavCard image={cFavs[1].iconUrl} />
                     </Parallax>
 
                     <CryptoTable history={user.history} />
