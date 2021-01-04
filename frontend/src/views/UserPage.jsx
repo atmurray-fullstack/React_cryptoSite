@@ -18,7 +18,7 @@ const UserPage = () => {
     });
     const [cFavs, setFavs] = useState([])
     const cryptoFavs = [];
-
+    const currentCryptoPrices = [];
 
     useEffect(() => {
 
@@ -37,14 +37,12 @@ const UserPage = () => {
                         'history': userInfo.data.history
                     }
                 )
-
                 axios.get('https://api.coinranking.com/v1/public/coins')
                     .then((res) => {
-                        console.log(res.data.data.coins)
+                        console.log(res.data.data.coins);
 
                         userInfo.data.favorites.map((el) => {
                             return res.data.data.coins.map(coin => {
-
                                 if (coin.name.toLowerCase() === el.toLowerCase()) {
                                     cryptoFavs.push(
                                         {
@@ -54,11 +52,11 @@ const UserPage = () => {
                                             description: coin.description,
                                             linkTo: coin.links[0].url
                                         })
+                                    userInfo.data.history[coin.symbol.toLowerCase()]['price now'] = coin.price;
                                 }
                             })
 
                         })
-                        console.log(cryptoFavs)
                         setFavs(cryptoFavs);
                         setBusy(false)
                     })
@@ -75,10 +73,17 @@ const UserPage = () => {
                 : (<BasicScreen>
                     <NavigationBar />
                     <Parallax>
+                        <div className='row mb-3' >
+                            <div className='col-4 mx-auto' style={{ 'backgroundColor': 'whitesmoke', 'borderRadius': '5px' }}>
+                                <h2>Favorites</h2>
+                            </div>
+                        </div>
                         <AppFavCard cryptoFavs={cFavs} />
                     </Parallax>
+                    <div className='row'>
+                        <CryptoTable history={user.history} />
 
-                    <CryptoTable history={user.history} />
+                    </div>
                 </BasicScreen>
                 )
             }

@@ -5,18 +5,22 @@ const AppCryptoTable = (props) => {
 
     const { history } = props
 
+
+
     const showHistory = Object.keys(history).map((key, ind) => {
 
+
         return (
+
             <tr key={history[key].symbol} >
                 <th scope="row">{history[key].name}</th>
                 <td>{history[key].symbol}</td>
                 <td>{history[key].qty}</td>
                 <td>{history[key]['buy price']}</td>
                 <td>{history[key]['buy date']}</td>
-                <td>{history[key]['price now']}</td>
-                <td>{history[key].profit}</td>
-                <td>{history[key].profit}</td>
+                <td>{parseInt(history[key]['price now']).toFixed(3)}</td>
+                <td>${((parseFloat(history[key]['price now']) - parseFloat(history[key]['buy price'])) * history[key].qty).toFixed(3)}</td>
+                <td>{(((parseFloat(history[key]['price now']) - parseFloat(history[key]['buy price'])) * history[key].qty) / (history[key]['buy price'] * history[key].qty) * 100).toFixed(2)}%</td>
             </tr>
         )
 

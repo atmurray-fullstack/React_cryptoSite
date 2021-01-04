@@ -40,9 +40,9 @@ const userSchema = new Schema({
 'btc':{
     'name':'bitcoin',
     'symbol':'btc',
-    'qty':0,
-    'buy price':0,
-    'buy date':'12/12/2020',
+    'qty':3,
+    'buy price':8321.5799,
+    'buy date':'02/12/2020',
     'price now':0,
     'profit':0
 },
