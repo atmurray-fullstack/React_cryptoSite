@@ -21,12 +21,7 @@ const NavigationBar = () => {
                         <Link to='/login' href='/login' className="nav-link">Login</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" >Register</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" >Popular</a>
-                    </li>                    <li className="nav-item">
-                        <a className="nav-link" >List</a>
+                        <Link to='/list' href='/list' className="nav-link">Crypto Listings</Link>
                     </li>
 
                 </ul>

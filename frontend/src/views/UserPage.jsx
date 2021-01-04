@@ -1,9 +1,9 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import BasicScreen from "../components/BasicScreen";
-import NavigationBar from "../components/NavigationBar";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import BasicScreen from '../components/BasicScreen';
+import NavigationBar from '../components/NavigationBar';
 import CryptoTable from '../components/AppCryptoTable';
-import Parallax from "../components/Parallax/Parallax";
+import Parallax from '../components/Parallax/Parallax';
 import AppFavCard from '../components/AppFavCard'
 
 const UserPage = () => {
