@@ -18,7 +18,6 @@ const UserPage = () => {
     });
     const [cFavs, setFavs] = useState([])
     const cryptoFavs = [];
-    const currentCryptoPrices = [];
 
     useEffect(() => {
 
@@ -53,6 +52,7 @@ const UserPage = () => {
                                             linkTo: coin.links[0].url
                                         })
                                     userInfo.data.history[coin.symbol.toLowerCase()]['price now'] = coin.price;
+
                                 }
                             })
 

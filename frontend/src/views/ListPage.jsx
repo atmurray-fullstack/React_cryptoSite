@@ -24,25 +24,23 @@ const ListPage = () => {
             .then((res) => {
                 // console.log(res.data.data.coins);
                 setList(res.data.data.coins);
-                console.log(list);
-
+                setBusy(false)
             })
 
     }, [token])
 
     const showList =
         Object.keys(list).map((key, ind) => {
-            console.log(list[key].name)
+            // console.log(list[key].name)
 
             return (
 
                 <tr key={list[key].symbol} >
                     <th scope="row">{list[key].name}</th>
-                    <td>{list[key].price}</td>
-                    <td>{list[key].price}</td>
-                    <td>{list[key].price}</td>
-
-
+                    <td>{list[key].symbol}</td>
+                    <td>$ {list[key].price}</td>
+                    <td>$ {list[key].marketCap}</td>
+                    <td><a href={list[key].websiteUrl} target='_blank' rel="noopener noreferrer" >{list[key].websiteUrl}</a></td>
                 </tr>
             )
 
@@ -51,30 +49,38 @@ const ListPage = () => {
 
 
     return (
-        <BasicScreen>
-            <NavigationBar />
-            <Parallax>
-                <div style={{ backgroundColor: 'whitesmoke' }}>
-                    <h1>This is the list page</h1>
-                </div>
-            </Parallax>
-            <CryptoList />
 
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Coin</th>
-                        <th scope="col">Symbol</th>
-                        <th scope="col">Current Price</th>
-                        <th scope="col">Market Cap</th>
-                        <th scope="col">Website</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {showList}
-                </tbody>
-            </table>
-        </BasicScreen >
+
+        <div>
+            {isBusy ? (<p>...loading screen</p>) :
+                (
+                    <BasicScreen>
+                        <NavigationBar />
+                        <Parallax>
+                            <div style={{ backgroundColor: 'whitesmoke' }}>
+                                <h1>This is the list page</h1>
+                            </div>
+                        </Parallax>
+                        <CryptoList />
+
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Coin</th>
+                                    <th scope="col">Symbol</th>
+                                    <th scope="col">Current Price</th>
+                                    <th scope="col">Market Cap</th>
+                                    <th scope="col">Website</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {showList}
+                            </tbody>
+                        </table>
+                    </BasicScreen >
+                )
+            }
+        </div>
 
     );
 }
